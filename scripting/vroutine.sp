@@ -13,7 +13,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.1",
+	version = "1.0.2",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -175,13 +175,16 @@ public Action vroutine_command(int args)
 	{
 		kv.GetString(NULL_STRING, sound, sizeof(sound));
 		kv.Rewind();
-		EmitSoundToAll(sound, SOUND_FROM_WORLD);
+		
+		PrecacheSound(sound, true);
+		
+		EmitSoundToAll(sound);
 	}
 	if (kv.JumpToKey(hint_text_cfg, false))
 	{
 		kv.GetString(NULL_STRING, hint_text, sizeof(hint_text));
 		kv.Rewind();
-		PrintHintTextToAll(hint_text);
+		PrintHintTextToAll("ADMIN: %s", hint_text);
 	}
 	if (kv.JumpToKey(cmd_cfg, false))
 	{
@@ -193,7 +196,7 @@ public Action vroutine_command(int args)
 	{
 		kv.GetString(NULL_STRING, chat_text, sizeof(chat_text));
 		kv.Rewind();
-		PrintToChatAll(chat_text);
+		PrintToChatAll("ADMIN: %s", chat_text);
 	}
 	delete kv;
 	return Plugin_Handled;

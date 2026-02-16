@@ -82,7 +82,7 @@ public int GetCount()
 	}
 	if (kv.JumpToKey("state", false))
 	{
-		count = KvGetNum(kv, "state");
+		count = KvGetNum(kv, NULL_STRING);
 		//delete kv;
 	}
 	else
@@ -94,8 +94,10 @@ public int GetCount()
 	KeyValues kv3 = new KeyValues("count");
 	int sum = count + 1;
 	IntToString(sum, count_str, sizeof(count_str));
+	PrintToServer(count_str);
 	if (kv2.JumpToKey(count_str, false))
 	{
+		//PrintToServer("Key Found");
 		kv3.SetString("state", count_str);
 		kv3.Rewind();
 		kv3.ExportToFile(path);

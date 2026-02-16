@@ -7,13 +7,14 @@
 #define VROUTINE_COUNT_FILE "vroutine_count.txt"
 #define VROUTINE_CLOCKTALE_FILE "vroutine_clocktale.txt"
 int g_count = 0;
+ConVar g_sync_with_time;
 
 public Plugin myinfo =
 {
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.2",
+	version = "1.0.3",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -61,6 +62,13 @@ public int GetCount()
 	char path[PLATFORM_MAX_PATH];
 	char path2[PLATFORM_MAX_PATH];
 	int count;
+	int timestamp = GetTime();
+	char hour_str[128];
+	int convarint = GetConVarInt(g_sync_with_time);
+	// 1771228800
+	FormatTime(hour_str, sizeof(hour_str), "%H", timestamp);
+	PrintToServer(hour_str);
+	int hour = StringToInt(hour_str);
 	char count_str[128];
 	BuildPath(Path_SM, path, sizeof(path), "configs/%s", VROUTINE_COUNT_FILE);
 	BuildPath(Path_SM, path2, sizeof(path2), "configs/%s", VROUTINE_FILE);
@@ -80,6 +88,7 @@ public int GetCount()
 		delete kv2;
 		return 0;
 	}
+	
 	if (kv.JumpToKey("state", false))
 	{
 		count = KvGetNum(kv, NULL_STRING);
@@ -93,6 +102,23 @@ public int GetCount()
 	}
 	delete kv;
 	KeyValues kv3 = new KeyValues("count");
+	if (convarint == 1)
+	{
+		// Sync With Time
+		if (hour == 00)
+		{
+			count = 0;
+		}
+		if (hour == 01)
+		{
+			count = 1;
+		}
+		if (hour == 02)
+		{
+			count = 2;
+		}
+	}
+	
 	int sum = count + 1;
 	IntToString(sum, count_str, sizeof(count_str));
 	PrintToServer(count_str);
@@ -101,6 +127,7 @@ public int GetCount()
 		//PrintToServer("Key Found");
 		kv3.SetString("state", count_str);
 		kv3.Rewind();
+		kv2.Rewind();
 		kv3.ExportToFile(path);
 	}
 	else
@@ -119,20 +146,24 @@ public int GetCount()
 public void OnPluginStart()
 {
 	makeConfig();
-	g_count = GetCount();
-	char count_str[128];
-	IntToString(g_count, count_str, sizeof(count_str));
-	PrintToServer(count_str);
-	RegServerCmd("reset_vroutine_count", reset_count_command);
+	g_sync_with_time = CreateConVar("v_sync_with_time", "0");
+	AutoExecConfig(true);
+	RegServerCmd("vroutine_count", vroutine_count_command);
 	RegServerCmd("v_routine", vroutine_command);
 	RegServerCmd("v_door", vroutine_door);
 	PrintToServer("vroutine Has Started");
 
-
-
 }
 
-public Action reset_count_command(int args)
+public void OnConfigsExecuted()
+{
+	g_count = GetCount();
+	char count_str[128];
+	IntToString(g_count, count_str, sizeof(count_str));
+	PrintToServer(count_str);
+}
+
+public Action vroutine_count_command(int args)
 {
 	g_count = GetCount();
 	char count_str[128];

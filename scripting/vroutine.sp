@@ -13,7 +13,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.0",
+	version = "1.0.1",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -154,10 +154,12 @@ public Action vroutine_command(int args)
 	char cmd_cfg[256];
 	char chat_text_cfg[256];
 
-	Format(sound_cfg, sizeof(sound_cfg), "%s_sound", g_count);
-	Format(hint_text_cfg, sizeof(hint_text_cfg), "%s_hint_text", g_count);
-	Format(cmd_cfg, sizeof(cmd_cfg), "%s_cmd", g_count);
-	Format(chat_text_cfg, sizeof(chat_text_cfg), "%s_chat_text", g_count);
+	char count_str[128];
+	IntToString(g_count, count_str, sizeof(count_str));
+	Format(sound_cfg, sizeof(sound_cfg), "%s_sound", count_str);
+	Format(hint_text_cfg, sizeof(hint_text_cfg), "%s_hint_text", count_str);
+	Format(cmd_cfg, sizeof(cmd_cfg), "%s_cmd", count_str);
+	Format(chat_text_cfg, sizeof(chat_text_cfg), "%s_chat_text", count_str);
 
 
 	BuildPath(Path_SM, path_clocktale, sizeof(path_clocktale), "configs/%s", VROUTINE_CLOCKTALE_FILE);

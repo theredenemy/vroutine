@@ -145,24 +145,28 @@ public int GetCount()
 
 public void OnPluginStart()
 {
+	int timestamp = GetTime();
+	char hour_str[128];
+	// 1771228800
+	FormatTime(hour_str, sizeof(hour_str), "%H", timestamp);
+	int hour = StringToInt(hour_str);
 	makeConfig();
 	g_sync_with_time = CreateConVar("v_sync_with_time", "0");
 	AutoExecConfig(true);
 	RegServerCmd("vroutine_count", vroutine_count_command);
 	RegServerCmd("v_routine", vroutine_command);
 	RegServerCmd("v_door", vroutine_door);
+	if (hour == 00 || hour == 01 || hour == 02)
+	{
+		g_count = GetCount();
+		char count_str[128];
+		IntToString(g_count, count_str, sizeof(count_str));
+		PrintToServer(count_str);
+	}
+	
 	PrintToServer("vroutine Has Started");
 
 }
-
-public void OnConfigsExecuted()
-{
-	g_count = GetCount();
-	char count_str[128];
-	IntToString(g_count, count_str, sizeof(count_str));
-	PrintToServer(count_str);
-}
-
 public Action vroutine_count_command(int args)
 {
 	g_count = GetCount();

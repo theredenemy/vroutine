@@ -1,0 +1,5 @@
+.vscode/
+*.smx
+/.venv
+/sourcemod-linux
+/sourcemod-win

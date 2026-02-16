@@ -83,6 +83,7 @@ public int GetCount()
 	if (kv.JumpToKey("state", false))
 	{
 		count = KvGetNum(kv, NULL_STRING);
+		kv.Rewind();
 		//delete kv;
 	}
 	else

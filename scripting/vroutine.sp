@@ -163,7 +163,6 @@ public void OnPluginStart()
 		IntToString(g_count, count_str, sizeof(count_str));
 		PrintToServer(count_str);
 	}
-	
 	PrintToServer("vroutine Has Started");
 
 }

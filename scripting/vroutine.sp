@@ -14,7 +14,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.4",
+	version = "1.0.5",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -48,7 +48,7 @@ void makeConfig()
 	if (!FileExists(path_clocktale))
 	{
 		KeyValues kv = new KeyValues("clocktale");
-		kv.SetString("2_sound", "/npc/combine_soldier/vo/storm.wav");
+		kv.SetString("2_sound", "npc/combine_soldier/vo/storm.wav");
 		kv.SetString("2_hint_text", "clock tale");
 		kv.SetString("2_cmd", "echo clocktale");
 		kv.SetString("2_chat_text", "clock tale");

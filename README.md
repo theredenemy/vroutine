@@ -5,22 +5,22 @@
   </p>
   <p style="margin-bottom: 0.5ex;">
     <img
-        src="https://img.shields.io/github/downloads//vroutine/total"
+        src="https://img.shields.io/github/downloads/theredenemy/vroutine/total"
     />
     <img
-        src="https://img.shields.io/github/last-commit//vroutine"
+        src="https://img.shields.io/github/last-commit/theredenemy/vroutine"
     />
     <img
-        src="https://img.shields.io/github/issues//vroutine"
+        src="https://img.shields.io/github/issues/theredenemy/vroutine"
     />
     <img
-        src="https://img.shields.io/github/issues-closed//vroutine"
+        src="https://img.shields.io/github/issues-closed/theredenemy/vroutine"
     />
     <img
-        src="https://img.shields.io/github/repo-size//vroutine"
+        src="https://img.shields.io/github/repo-size/theredenemy/vroutine"
     />
     <img
-        src="https://img.shields.io/github/workflow/status//vroutine/Compile%20and%20release"
+        src="https://img.shields.io/github/workflow/status/theredenemy/vroutine/Build%20and%20release"
     />
   </p>
 </div>

@@ -38,18 +38,18 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ordinance_controller
+        name: vroutine
         path: |
-          ordinance_controller.zip
-          ordinance_controller.tar.gz
-          ordinance_controller_archive/
+          vroutine.zip
+          vroutine.tar.gz
+          vroutine_archive/
     
     - name: Upload to Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/v')
       with:
         files: |
-          ordinance_controller.zip
-          ordinance_controller.tar.gz
+          vroutine.zip
+          vroutine.tar.gz
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

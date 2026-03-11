@@ -14,7 +14,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.5",
+	version = "1.0.6",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -225,7 +225,7 @@ public Action vroutine_command(int args)
 	{
 		kv.GetString(NULL_STRING, chat_text, sizeof(chat_text));
 		kv.Rewind();
-		PrintToChatAll("ADMIN: %s", chat_text);
+		PrintToChatAll("\x07FF0000ADMIN\x01: %s", chat_text);
 	}
 	delete kv;
 	return Plugin_Handled;

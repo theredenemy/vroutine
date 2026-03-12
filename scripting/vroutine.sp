@@ -14,7 +14,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.8",
+	version = "1.0.9",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
@@ -225,7 +225,8 @@ public Action vroutine_command(int args)
 	{
 		kv.GetString(NULL_STRING, chat_text, sizeof(chat_text));
 		kv.Rewind();
-		PrintToChatAll("\x07FF0000ADMIN\x01: %s", chat_text);
+		// why do i keep changing this
+		PrintToChatAll("\x07FF0000ADMIN\x01 : %s", chat_text);
 	}
 	delete kv;
 	return Plugin_Handled;

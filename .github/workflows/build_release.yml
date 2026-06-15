@@ -32,8 +32,6 @@ jobs:
         tree
         git submodule update --init --recursive
         python build.py --archive
-        dir
-        tree
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4

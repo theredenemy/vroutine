@@ -18,7 +18,7 @@ jobs:
 
     
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
         python-version: '3.14'
     
@@ -35,7 +35,7 @@ jobs:
         python build.py --archive
     
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: vroutine
         path: |

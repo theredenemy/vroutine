@@ -14,7 +14,7 @@ public Plugin myinfo =
 	name = "vroutine",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.9",
+	version = "2.0.0",
 	url = "https://github.com/theredenemy/vroutine"
 };
 
